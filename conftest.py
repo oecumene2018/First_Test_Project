@@ -15,6 +15,11 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture(scope='function')
+# Можно в фикстуре browser файла conftest указать вместо function указать module или session (все это проходили изучая фикстуры)
+#     и в тестe (test_product_page.py) первым действием очистку куки
+#         def test_guest_can_add_product_to_basket(browser, link):
+#         browser.delete_all_cookies()
+#     Тогда тест пройдет в одном браузере и не будет считать сумму добавленных товаров."""
 def browser(request):
     browser_name = request.config.getoption('browser_name')
     version_lang = request.config.getoption('language')

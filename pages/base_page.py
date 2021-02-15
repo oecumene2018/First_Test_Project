@@ -2,6 +2,10 @@
 import math
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from .locators import BasePageLocators
 
 
 class BasePage:
@@ -18,13 +22,31 @@ class BasePage:
 
     def is_element_present(self, how, what):
         """The method to catch exceptions"""
-
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
         else:
             print("Element is present")
+        return True
+
+    def is_not_element_present(self, how, what, timeout=4):
+        """Check that an element is not shown on a page.
+        Using Selenium explicit waits"""
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
+
+    def is_disappeared(self, how, what, timeout=4):
+        """Check that an element will disappear from a page.
+        Using Selenium explicit waits"""
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).\
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
         return True
 
     def solve_quiz_and_get_code(self):
@@ -40,3 +62,16 @@ class BasePage:
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def go_to_login_page(self):
+        """The method to check that a guest can go to login page."""
+
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+        # return LoginPage(browser=self.browser, url=self.browser.current_url)
+
+    def should_be_login_link(self):
+        """The method checks that there is a login page link on the Main page."""
+
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+

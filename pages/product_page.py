@@ -3,6 +3,7 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+
     def should_add_product_to_basket(self):
         """"Check that product has been added to basket"""
 
@@ -21,3 +22,21 @@ class ProductPage(BasePage):
 
         assert self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text in \
                self.browser.find_element(*ProductPageLocators.PRICE_SUCCESS_ALERT).text, "Wrong price in basket"
+
+    def should_not_see_success_message(self):
+        """Check that there is no success message on page"""
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_ALERT), \
+            "There is a success message, but should not be"
+
+    def should_message_disappear(self):
+        """Check that there is no success message on page"""
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_ALERT), \
+            "Success message not disappeared, but it should"
+
+    def should_be_login_link(self):
+        """Check that there is a login link on a product page"""
+        assert self.is_element_present(*ProductPageLocators.LOGIN_LINK), "No login link on the product page"
+
+
+
+

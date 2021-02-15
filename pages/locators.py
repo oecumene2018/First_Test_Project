@@ -1,6 +1,11 @@
 from selenium.webdriver.common.by import By
 
 
+class BasePageLocators:
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+
 class MainPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
@@ -17,17 +22,10 @@ class ProductPageLocators:
     PRODUCT_PRICE = (By.CLASS_NAME, "price_color")
     SUCCESS_ALERT = (By.XPATH, "//*[@id='messages']/div[1]/div/strong")
     PRICE_SUCCESS_ALERT = (By.XPATH, "//div[@id='messages']//strong")
-    # PRODUCT_LINKS = ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-    #                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"]
-
+    SUCCESS_MESSAGE = (By.CLASS_NAME, "alert-success")
+    PRODUCT_URL = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    PRODUCT_PAGE_TEST_LOGIN_URL = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 
 

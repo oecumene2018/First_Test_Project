@@ -20,6 +20,8 @@ class BasePage:
 
         self.browser.get(self.url)
 
+# POSITIVE ELEMENT CHECK
+
     def is_element_present(self, how, what):
         """The method to catch exceptions"""
         try:
@@ -29,6 +31,8 @@ class BasePage:
         else:
             print("Element is present")
         return True
+
+# NEGATIVE ELEMENT CHECKS
 
     def is_not_element_present(self, how, what, timeout=4):
         """Check that an element is not shown on a page.
@@ -49,6 +53,8 @@ class BasePage:
             return False
         return True
 
+# QUIZ SOLVER
+
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -63,6 +69,8 @@ class BasePage:
         except NoAlertPresentException:
             print("No second alert presented")
 
+# GO TO LOGIN PAGE
+
     def go_to_login_page(self):
         """The method to check that a guest can go to login page."""
 
@@ -75,3 +83,10 @@ class BasePage:
 
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
+# GO TO BASKET PAGE
+
+    def go_to_basket_page(self):
+        """The method to check that a guest can go to the basket page."""
+
+        link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        link.click()

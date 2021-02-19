@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_URL = "http://selenium1py.pythonanywhere.com/basket/"
+    BASKET_LINK = (By.XPATH, "//span[@class='btn-group']/a")
 
 
 class MainPageLocators:
@@ -28,4 +30,7 @@ class ProductPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 
+class BasketPageLocators:
+    BASKET_ITEMS_SECTION = (By.CSS_SELECTOR, "basket-items")
+    BASKET_EMPTY = (By.XPATH, "//div[@id='content_inner']/p")
 

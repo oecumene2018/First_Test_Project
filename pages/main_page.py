@@ -8,7 +8,7 @@ class MainPage(BasePage):
     """Class MainPage inherits from parent (super) class BasePage."""
 
     def __init__(self, *args, **kwargs):
-        pass
+        super().__init__(*args, **kwargs)
 
 
 

@@ -6,6 +6,7 @@ class BasePageLocators:
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     BASKET_URL = "http://selenium1py.pythonanywhere.com/basket/"
     BASKET_LINK = (By.XPATH, "//span[@class='btn-group']/a")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
 class MainPageLocators:
@@ -26,7 +27,7 @@ class ProductPageLocators:
     PRICE_SUCCESS_ALERT = (By.XPATH, "//div[@id='messages']//strong")
     SUCCESS_MESSAGE = (By.CLASS_NAME, "alert-success")
     PRODUCT_URL = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    PRODUCT_PAGE_TEST_LOGIN_URL = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    PRODUCT_PAGE_TEST_LOGIN_URL = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-shellcoders-handbook_209/"
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 

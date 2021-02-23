@@ -1,9 +1,12 @@
 import pytest
 import time
+from selenium.webdriver.common.by import By
+from mimesis import Generic
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
-from .pages.locators import ProductPageLocators
 from .pages.basket_page import BasketPage
+from .pages.account_page import AccountPage
+from .pages.locators import ProductPageLocators, LoginPageLocators
 
 link = ProductPageLocators.PRODUCT_PAGE_TEST_LOGIN_URL
 
@@ -79,3 +82,35 @@ def test_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty_basket_text()
 
+class FakeUser:
+    """The calls allows emulating fake user data using the Mimesis module."""
+    def __init__(self):
+        generic = Generic('en')
+        self.email = generic.person.email()
+        self.password = generic.person.password(10)
+
+
+# Test scenarios for registered users.
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        url = LoginPageLocators.LOGIN_PAGE_URL
+        page = LoginPage(browser, url)
+        page.open()
+        new_user = FakeUser()
+        page.register_new_user(new_user.email, new_user.password)
+        page.should_be_authorised_user()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        # browser.delete_all_cookies()
+        page = ProductPage(browser, link)
+        page.open()
+        add_button = browser.find_element(*ProductPageLocators.ADD_PRODUCT_BUTTON)
+        add_button.click()
+        page.should_be_message_product_added_to_basket()
+        page.should_be_same_price_page_and_basket()
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_see_success_message()

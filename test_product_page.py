@@ -82,6 +82,7 @@ def test_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty_basket_text()
 
+
 class FakeUser:
     """The calls allows emulating fake user data using the Mimesis module."""
     def __init__(self):

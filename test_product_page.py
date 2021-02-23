@@ -1,11 +1,8 @@
 import pytest
-import time
-from selenium.webdriver.common.by import By
 from mimesis import Generic
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
-from .pages.account_page import AccountPage
 from .pages.locators import ProductPageLocators, LoginPageLocators
 
 link = ProductPageLocators.PRODUCT_PAGE_TEST_LOGIN_URL

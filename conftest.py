@@ -37,5 +37,5 @@ def browser(request):
     else:
         print(f"Browser {version_lang} still is not implemented")
     yield browser
-    print("\nQuitting browser...")
-    browser.quit()
+    # print("\nQuitting browser...")
+    # browser.quit()
